@@ -51,7 +51,7 @@ print(r_json)
 ticket = r_json["response"]["serviceTicket"]
 
 # URL for Host REST API call to get list of exisitng hosts on the network.
-url = "https://" + controller + "/api/v1/host?limit=1&offset=1"
+url = "https://" + controller + "/api/v1/host?limit=1&offset=5"
 
 #Content type must be included in the header as well as the ticket
 header = {"content-type": "application/json", "X-Auth-Token":ticket}
@@ -62,8 +62,16 @@ response = requests.get(url, headers=header, verify=False)
 # json.dumps serializes the json into a string and allows us to
 # print the response in a 'pretty' format with indentation etc.
 print ("Hosts = ")
-print (json.dumps(response.json(), indent=4, separators=(',', ': ')))
+#print (json.dumps(response.json(), indent=4, separators=(',', ': ')))
 
-r_resp=response.json()
+r_resp = response.json()
 
-print(r_resp["response"][0]["hostIp"])
+#for x in r_resp:
+
+print(r_resp)
+#print("Host Name",r_resp["response"][0]["hostIp"])
+#print("Host IP",r_resp["response"][0]["hostIp"])
+#print("Host MAc",r_resp["response"][0]["hostIp"])
+
+#{'response': [{'pointOfPresence': 'ae19cd21-1b26-4f58-8ccd-d265deabb6c3', 'source': '200', 'hostIp': '10.1.15.117', 'subType': 'UNKNOWN', 'hostType': 'wireless', 'connectedNetworkDeviceIpAddress': '10.1.14.3', 'connectedNetworkDeviceId': 'cd6d9b24-839b-4d58-adfe-3fdf781e1782', 'pointOfAttachment': 'ae19cd21-1b26-4f58-8ccd-d265deabb6c3', 'connectedAPName': 'AP7081.059f.19ca', 'id': '48cdeb9b-b412-491e-a80c-7ec5bbe98167', 'connectedAPMacAddress': '68:bc:0c:63:4a:b0', 'hostMac': '00:24:d7:43:59:d8', 'vlanId': '600', 'lastUpdated': '1479514114932'}], 'version': '1.0'}
+
